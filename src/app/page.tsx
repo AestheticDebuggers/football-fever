@@ -6,7 +6,7 @@ function Home() {
   return (
     <div className='mx-auto h-screen bg-black min-h-full min-w-full'>
       <Navbar />
-      
+      {/*Hi*/}
     </div>
   );
 }
