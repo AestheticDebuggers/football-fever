@@ -3,13 +3,13 @@ import React from 'react'
 function leagues() {
     const data = [
       { id: 1,image:'isl.jpg', name: 'Indian Super League', },
-      { id: 2,image:'', name: 'Saudi Pro League', },
-      { id: 3,image:'', name: 'Premier League', },
-      { id: 4,image:'', name: 'LaLiga', },
-      { id: 5,image:'', name: 'Champions League', },
-      { id: 6,image:'', name: 'Bundesliga', },
-      { id: 7,image:'', name: 'Serie A', },
-      { id: 8,image:'', name: 'Ligue 1', },
+      { id: 2,image:'Saudi-Pro-league.jpg', name: 'Saudi Pro League', },
+      { id: 3,image:'premier-league.jpg', name: 'Premier League', },
+      { id: 4,image:'laliga.jpg', name: 'LaLiga', },
+      { id: 5,image:'champ.jpg', name: 'Champions League', },
+      { id: 6,image:'bundas.jpg', name: 'Bundesliga', },
+      { id: 7,image:'seriea.jpg,', name: 'Serie A', },
+      { id: 8,image:'lig.jpg', name: 'Ligue 1', },
       // Add more items as needed
     ];
   
@@ -27,7 +27,7 @@ function leagues() {
                 <tr key={item.id} className="flex">
                   <td className="p-4 text-center">{item.name}</td>
                   <td className="p-4 text-center">
-                  <img src={item.image} alt={`${item.name} logo`} className="w-8 h-8" /> {/* Adjust the size as needed */}
+                  <img src={`${process.env.PUBLIC_URL}/${item.image}`} alt={`${item.name} logo`} className="w-8 h-8"/>
                 </td>
                 </tr>
               ))}
