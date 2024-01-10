@@ -14,7 +14,7 @@ function leagues() {
   ];
 
   return (
-    <div className='h-screen bg-black'>
+    <div className='h-screen bg-[#151716]'>
       <div className="flex h-[65%]">
         <table className="m-4 w-60 border border-gray-500 rounded-md shadow-md">
           <thead>

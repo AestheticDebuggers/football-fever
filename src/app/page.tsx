@@ -2,17 +2,21 @@
 import React from 'react';
 import Navbar from './components/NavBar'; // Adjust the path if needed
 import Leagues from './components/Leagues';
-import ISLLeaderboard from './components/islLeaderboard';
+import ISLLeaderboard from './components/islLeaderboard'; // Corrected component name
 
 function Home() {
   return (
-    <div className='mx-auto h-screen bg-[#151716] min-h-full min-w-full'>
+    <div className='mx-auto flex flex-col h-screen bg-[#151716]'>
       <Navbar />
-      <Leagues />
-      <ISLLeaderboard />
-      <div className='min-h-screen flex flex-col items-center mt-12 bg-[#151716] text-xl font-semibold'>
+
+      <div className='flex-grow flex'>
+        <div className='flex-grow'>
+          <Leagues />
+        </div>
+        <div className='flex-grow'>
+          <ISLLeaderboard />
+        </div>
       </div>
-      
     </div>
   );
 }
