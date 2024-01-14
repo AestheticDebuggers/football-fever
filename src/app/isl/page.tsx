@@ -56,9 +56,9 @@ const ISLLeaderboard = () => {
     }, []);
 
     return (
-        <div className="flex h-full bg-[#151716] justify-center items-center text-sm">
-            <div className="flex flex-col justify-center text-center w-[75%]">
-                <h1 className="flex justify-center items-center bg-[#232323] w-full text-lg font-bold p-4">
+        <div className="flex h-full bg-[#151716] justify-center items-center text-sm ">
+            <div className="flex flex-col mt-8 justify-center text-center  w-[75%]">
+                <h1 className="flex justify-center items-center rounded-t-[20px] bg-[#232323] w-full text-lg font-bold p-4">
                     Indian Super League<img src="/Indian Super League.png" className="w-[30px] h-[30px] m-2" />
                 </h1>
                 <h2 className="flex justify-center items-left text-base font-semibold bg-[#232323] w-full">India</h2>
@@ -66,7 +66,7 @@ const ISLLeaderboard = () => {
                 {loading ? (
                     <p>Loading...</p>
                 ) : (
-                    <table className="w-full m-4 mx-auto my-auto bg-[#232323]">
+                    <table className="w-full m-4 mx-auto my-auto rounded-b-[20px] bg-[#232323]">
                         <thead>
                             <tr>
                                 <th className="text-start p-2">TEAM</th>
@@ -98,7 +98,7 @@ const ISLLeaderboard = () => {
                         </tbody>
                     </table>
                 )}
-                <div className="h-fit w-fit">
+                <div className="mx-auto my-auto h-fit w-[85%]">
                 <ISLstats />
                 </div>
                 
