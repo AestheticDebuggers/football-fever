@@ -1,38 +1,72 @@
-import React from 'react'
+import { collection, getDocs } from 'firebase/firestore';
+import React, { useEffect, useState } from 'react';
+import Link from 'next/link';
+import { db } from '../firebase/config';
 
-function leagues() {
-  const data = [
-    { id: 1, name: 'Indian Super League', },
-    { id: 2, name: 'Saudi Pro League', },
-    { id: 3, name: 'Premier League', },
-    { id: 4, name: 'LaLiga', },
-    { id: 5, name: 'Champions League', },
-    { id: 6, name: 'Bundesliga', },
-    { id: 7, name: 'Serie A', },
-    { id: 8, name: 'Ligue 1', },
-    // Add more items as needed
-  ];
+interface League {
+  id: string;
+  Name: string;
+  PageSlug: string;
+}
+
+const Leagues = () => {
+  const [leagues, setLeagues] = useState<League[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchLeagues = async () => {
+      try {
+        const leaguesCollection = collection(db, "leagues");
+        const querySnapshot = await getDocs(leaguesCollection);
+
+        const leaguesData: League[] = [];
+        querySnapshot.forEach((doc) => {
+          const data = doc.data();
+          leaguesData.push({
+            id: doc.id,
+            Name: data.Name,
+            PageSlug: data.PageSlug,
+          });
+        });
+
+        setLeagues(leaguesData);
+      } catch (error) {
+        setError('Error fetching leagues. Please try again.');
+        console.error('Error fetching Leagues:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchLeagues();
+  }, []);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
 
   return (
-    <div className='h-screen bg-[#151716]'>
-      <div className="flex h-[65%]">
-        <table className="m-4 w-60 border border-gray-500 rounded-md shadow-md">
-          <thead>
-            <tr>
-              <th className="text-centre">TOP LEAGUES</th>
-            </tr>
-          </thead>
-          <tbody>
-            {data.map((item) => (
-              <tr key={item.id} className="flex">
-                <td className="p-4 text-center">{item.name}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+    <div className='h-fit min-w-[200px] bg-[#232323] rounded-[20px] m-5 p-5'>
+      <div className="flex flex-col h-[65%]">
+        <div className='font-semibold text-xl py-2'>Top Leagues</div>
+        <div className='flex flex-col px-2'>
+          {leagues.map((league) => (
+            <Link key={league.id} href={`${league.PageSlug}`}>
+              <p className='flex items-center gap-1'>
+                <img src={`${league.Name}.png`} className='flex justify-center items-center w-[20px] h-[20px]' alt={`${league.Name} icon`} />
+                <div className="p-2">{league.Name}</div>
+              </p>
+            </Link>
+          ))}
+        </div>
       </div>
     </div>
   );
 }
 
-export default leagues;
+export default Leagues;

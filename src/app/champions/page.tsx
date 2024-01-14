@@ -3,7 +3,6 @@
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { db } from "../firebase/config";
-import ISLstats from "../components/islStats";
 
 interface Team {
     id: string;
@@ -17,7 +16,7 @@ interface Team {
     matches: string;
 }
 
-const ISLLeaderboard = () => {
+const premLeaderboard = () => {
     const [teams, setTeams] = useState<Team[]>([]);
     const [loading, setLoading] = useState(true);
 
@@ -26,7 +25,7 @@ const ISLLeaderboard = () => {
             try {
                 // Add a condition to filter teams based on the league (e.g., "Premier League")
                 const teamsCollection = collection(db, "teams");
-                const teamsQuery = query(teamsCollection, where("League", "==", "ISL"));
+                const teamsQuery = query(teamsCollection, where("League", "==", "Champions League"));
                 const querySnapshot = await getDocs(teamsQuery);
 
                 const teamsData: Team[] = [];
@@ -56,12 +55,12 @@ const ISLLeaderboard = () => {
     }, []);
 
     return (
-        <div className="flex h-full bg-[#151716] justify-center items-center text-sm">
+        <div className="flex h-screen bg-[#151716] justify-center items-center text-sm">
             <div className="flex flex-col justify-center text-center w-[75%]">
                 <h1 className="flex justify-center items-center bg-[#232323] w-full text-lg font-bold p-4">
-                    Indian Super League<img src="/Indian Super League.png" className="w-[30px] h-[30px] m-2" />
+                    Champions League<img src="/Champions League.png" className="w-[30px] h-[30px] m-2" />
                 </h1>
-                <h2 className="flex justify-center items-left text-base font-semibold bg-[#232323] w-full">India</h2>
+                <h2 className="flex justify-center items-left text-base font-semibold bg-[#232323] w-full">International</h2>
 
                 {loading ? (
                     <p>Loading...</p>
@@ -98,13 +97,9 @@ const ISLLeaderboard = () => {
                         </tbody>
                     </table>
                 )}
-                <div className="h-fit w-fit">
-                <ISLstats />
-                </div>
-                
             </div>
         </div>
     );
 };
 
-export default ISLLeaderboard;
+export default premLeaderboard;

@@ -11,6 +11,8 @@
   "dependencies": {
     "@nextui-org/modal": "^2.0.28",
     "axios": "^1.6.5",
+    "date-fns": "^3.2.0",
+    "firebase": "^10.7.1",
     "fotmob": "^2.2.1",
     "framer-motion": "^10.17.9",
     "mysql2": "^3.7.0",
@@ -21,6 +23,7 @@
     "serverless-mysql": "^1.5.5"
   },
   "devDependencies": {
+    "@types/firebase": "^3.2.1",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
