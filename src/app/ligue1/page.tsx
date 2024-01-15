@@ -98,9 +98,6 @@ const Ligue1Leaderboard = () => {
                         </tbody>
                     </table>
                 )}
-                <div className="mx-auto my-auto h-fit w-[85%]">
-                <ISLstats />
-                </div>
                 
             </div>
         </div>
