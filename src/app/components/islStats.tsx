@@ -45,77 +45,45 @@ const ISLstats = () => {
         fetchstats();
     }, []);
 
+    const renderTopPlayers = (statName: string, sortBy: keyof Stat) => (
+        <table className="w-full m-4 mx-auto">
+            <thead>
+                <tr>
+                    <th className="text-start p-2">{`Top ${statName}`}</th>
+                    <th className="p-2">{statName}</th>
+                </tr>
+            </thead>
+            <tbody>
+                {stats
+                    .sort((a, b) => (b[sortBy] as number) - (a[sortBy] as number))
+                    .slice(0, 4) // Display only the top 4 players
+                    .map((stat, index) => (
+                        <tr
+                            key={stat.id}
+                            className={index === 0 ? '' : ''} // Highlight the top player
+                        >
+                            <td className="flex items-center p-2">
+                                <img src={`${stat.Name}.png`} className="w-[20px] h-[20px] mr-2" alt={`${stat.Name} logo`} />
+                                {stat.Name}
+                            </td>
+                            <td className="p-2">{stat[sortBy]}</td>
+                        </tr>
+                    ))}
+            </tbody>
+        </table>
+    );
+
+
+
     return (
         <div className="flex h-fit w-[100%] bg-[#232323] justify-center items-center text-sm rounded-[20px] m-5">
             <div className="justify-center text-center">
                 <div className="flex flex-row">
-                <table className=" w-full m-4 mx-auto">
-                    <thead className="">
-                        <tr>
-                            <th className="text-start p-2">Top Scorer</th>
-                            <th className="p-2">Goals</th>
-                        </tr>
-                    </thead>
-                    <tbody className="">
-                        {stats
-                            .sort((a, b) => b.Goals - a.Goals)
-                            .map((stat) => (
-                                <tr key={stat.id}>
-                                    <td className="flex items-center p-2">
-                                        <img src={`${stat.Name}.png`} className='w-[20px] h-[20px] mr-2' alt={`${stat.Name} logo`} />
-                                        {stat.Name}
-                                    </td>
-                                    <td className="p-2">{stat.Goals}</td>
-                                    
-                                </tr>
-                            ))}
-                    </tbody>
-                </table>
-                <table className=" w-full m-4 mx-auto">
-                    <thead className="">
-                        <tr>
-                            <th className="text-start p-2">Top Assister</th>
-                            <th className="p-2">Assists</th>
-                        </tr>
-                    </thead>
-                    <tbody className="">
-                        {stats
-                            .sort((a, b) => b.Assists - a.Assists)
-                            .map((stat) => (
-                                <tr key={stat.id}>
-                                    <td className="flex items-center p-2">
-                                        <img src={`${stat.Name}.png`} className='w-[20px] h-[20px] mr-2' alt={`${stat.Name} logo`} />
-                                        {stat.Name}
-                                    </td>
-                                    <td className="p-2">{stat.Assists}</td>
-                                </tr>
-                            ))}
-                    </tbody>
-                </table>
-                <table className=" w-full m-4 mx-auto">
-                    <thead className="">
-                        <tr>
-                            <th className="text-start p-2">Most Yellow</th>
-                            <th className="p-2">Yellow</th>
-                        </tr>
-                    </thead>
-                    <tbody className="">
-                        {stats
-                            .sort((a, b) => b.Yellows - a.Yellows)
-                            .map((stat) => (
-                                <tr key={stat.id}>
-                                    <td className="flex items-center p-2">
-                                        <img src={`${stat.Name}.png`} className='w-[20px] h-[20px] mr-2' alt={`${stat.Name} logo`} />
-                                        {stat.Name}
-                                    </td>
-                                    <td className="p-2">{stat.Yellows}</td>
-                                </tr>
-                            ))}
-                    </tbody>
-                </table>
+                    {renderTopPlayers("Scorer", "Goals")}
+                    {renderTopPlayers("Assister", "Assists")}
+                    {renderTopPlayers("Yellow", "Yellows")}
+                    {renderTopPlayers("Red", "Reds")}
                 </div>
-                {/* Team Leaderboard Table */}
-                
             </div>
         </div>
     );

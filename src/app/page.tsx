@@ -36,7 +36,7 @@ function Home() {
           const date = data.date instanceof Timestamp ? data.date.toDate() : (data.date as Date);
     
           // Check if the match date is today
-          if (isToday(date)) {
+          if ((date)) {
             matchesData.push({
               id: doc.id,
               league: data.League,
