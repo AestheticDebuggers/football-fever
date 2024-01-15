@@ -16,7 +16,7 @@ interface Team {
     matches: string;
 }
 
-const ligue1Leaderboard = () => {
+const Ligue1Leaderboard = () => {
     const [teams, setTeams] = useState<Team[]>([]);
     const [loading, setLoading] = useState(true);
 
@@ -102,4 +102,4 @@ const ligue1Leaderboard = () => {
     );
 };
 
-export default ligue1Leaderboard;
+export default Ligue1Leaderboard;

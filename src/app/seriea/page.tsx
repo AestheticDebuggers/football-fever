@@ -16,7 +16,7 @@ interface Team {
     matches: string;
 }
 
-const serieaLeaderboard = () => {
+const SerieaLeaderboard = () => {
     const [teams, setTeams] = useState<Team[]>([]);
     const [loading, setLoading] = useState(true);
 
@@ -102,4 +102,4 @@ const serieaLeaderboard = () => {
     );
 };
 
-export default serieaLeaderboard;
+export default SerieaLeaderboard;

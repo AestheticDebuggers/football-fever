@@ -16,7 +16,7 @@ interface Team {
     matches: string;
 }
 
-const premLeaderboard = () => {
+const ChampionsLeaderboard = () => {
     const [teams, setTeams] = useState<Team[]>([]);
     const [loading, setLoading] = useState(true);
 
@@ -102,4 +102,4 @@ const premLeaderboard = () => {
     );
 };
 
-export default premLeaderboard;
+export default ChampionsLeaderboard;

@@ -16,7 +16,7 @@ interface Team {
     matches: string;
 }
 
-const laligaLeaderboard = () => {
+const LaligaLeaderboard = () => {
     const [teams, setTeams] = useState<Team[]>([]);
     const [loading, setLoading] = useState(true);
 
@@ -102,4 +102,4 @@ const laligaLeaderboard = () => {
     );
 };
 
-export default laligaLeaderboard;
+export default LaligaLeaderboard;
